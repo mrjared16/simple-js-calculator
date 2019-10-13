@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Be Tap Tinh</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="title">Be tap tinh</h2>
+        <form id="form">
+            <div class="row">
+                <div class="col-2">
+                    <label for="num1">So thu nhat</label>
+                </div>
+                <div class="col-4">
+                    <input type="number" id="num1" step="0.1">
+                </div>
+                <div class="col-1">
+                    <input type="radio" name="operator" id="pls" value="plus" checked>
+                    <label for="pls">Cong</label>
+                </div>
+                <div class="col-1">
+                    <input type="radio" name="operator" id="sub" value="subtract">
+                    <label for="sub">Tru</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <label for="num2">So thu hai</label>
+                </div>
+                <div class="col-4">
+                    <input type="number" id="num2" step="0.1">
+                </div>
+                <div class="col-1">
+                    <input type="radio" name="operator" id="mul" value="multiply">
+                    <label for="mul">Nhan</label>
+                </div>
+                <div class="col-1">
+                    <input type="radio" name="operator" id="div" value="divide">
+                    <label for="div">Chia</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <label for="result">Ket qua</label>
+                </div>
+                <div class="col-4">
+                    <input type="number" name="" id="result" readonly>
+                </div>
+                <div class="col-2">
+                    <button id="submit" class="btn">Tinh</button>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-2">Thong bao</label>
+                <p id="msg" class="message"></p>
+            </div>
+        </form>
+    </div>
+    <script src="./script.js"></script>
+
+</body>
+
+</html>

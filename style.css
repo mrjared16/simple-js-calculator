@@ -1,0 +1,7 @@
+.row{
+    margin: 20px 0;
+}
+[class*="col"]{
+    background-color: rgb(219, 210, 85);
+    margin-right: 20px;
+}
