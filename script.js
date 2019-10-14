@@ -76,7 +76,7 @@
         const num2 = getInput('num2');
 
         if (num1 === null || num2 === null) {
-            printError('Chua nhap du 2 so');
+            printError('Chưa nhập đủ 2 số');
             clearResult();
             return;
         }
@@ -97,11 +97,11 @@
 
     function printInputError() {
         if (inputState[0] === false) {
-            printError('So 1 khong hop le');
+            printError('Số thứ nhất không hợp lệ');
             return;
         }
         if (inputState[1] === false) {
-            printError('So 2 khong hop le');
+            printError('Số thứ hai không hợp lệ');
             return;
         }
         clearError();
