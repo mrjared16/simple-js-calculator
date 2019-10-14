@@ -1,71 +1,126 @@
-function printError(msg) {
-    document.getElementById('msg').innerText = msg;
-}
+{
+    // null for ''
+    // true for number
+    // false for NaN
+    const inputState = [null, null];
 
-function printResult(value) {
-    document.getElementById('result').value = value;
-}
-
-function getInput(id, nullMsg, nanMsg) {
-    const { value } = document.getElementById(id);
-    if (!value) {
-        printError(nullMsg);
-        return null;
+    function printError(msg) {
+        const alert = document.getElementById('msg');
+        alert.innerText = msg;
+        alert.style.display = 'block';
     }
-    if (Number.isNaN(value)) {
-        printError(nanMsg);
-        return null;
+
+    function clearError() {
+        const alert = document.getElementById('msg');
+        alert.style.display = 'none';
     }
-    return parseFloat(value);
-}
 
-function getOperator() {
-    return document.querySelector('input[name="operator"]:checked').value;
-}
+    function printResult(value) {
+        document.getElementById('result').value = value;
+    }
 
-function calculate(num1, num2, operator) {
-    let result;
-    switch (operator) {
-        case 'plus':
-            result = num1 + num2;
-            break;
-        case 'subtract':
-            result = num1 - num2;
-            break;
-        case 'multiply':
-            result = num1 * num2;
-            break;
-        case 'divide':
-            if (num2 === 0) {
-                printError('Khong the chia cho 0');
-                result = null;
-            } else {
+    function clearResult() {
+        document.getElementById('result').value = null;
+    }
+
+    function getInput(id) {
+        const { value } = document.getElementById(id);
+        if (!value) {
+            return null;
+        }
+        return parseFloat(value);
+    }
+
+    function getOperator() {
+        return document.querySelector('input[name="operator"]:checked').value;
+    }
+
+    function calculate(num1, num2, operator) {
+        let result;
+        switch (operator) {
+            case 'plus':
+                result = num1 + num2;
+                break;
+            case 'subtract':
+                result = num1 - num2;
+                break;
+            case 'multiply':
+                result = num1 * num2;
+                break;
+            case 'divide':
+                if (num2 === 0) {
+                    printError('Không thể chia cho 0');
+                    return null;
+                }
+
                 result = num1 / num2;
-            }
-            break;
-        default:
-            printError('Phep tinh khong hop le');
-            break;
+                break;
+            default:
+                printError('Phép tính không hợp lệ');
+                return null;
+        }
+
+        return result;
     }
 
-    return result;
+    // calculate
+    document.getElementById('submit').onclick = (e) => {
+        e.preventDefault();
+
+        if (inputState[0] === false || inputState[1] === false) {
+            clearResult();
+            return;
+        }
+
+        const num1 = getInput('num1');
+        const num2 = getInput('num2');
+
+        if (num1 === null || num2 === null) {
+            printError('Chua nhap du 2 so');
+            clearResult();
+            return;
+        }
+
+        const operator = getOperator();
+
+        const result = calculate(num1, num2, operator);
+
+        // if calculate unsuccesfully -> clear result
+        if (result === null) {
+            clearResult();
+            return;
+        }
+
+        clearError();
+        printResult(result);
+    };
+
+    function printInputError() {
+        if (inputState[0] === false) {
+            printError('So 1 khong hop le');
+            return;
+        }
+        if (inputState[1] === false) {
+            printError('So 2 khong hop le');
+            return;
+        }
+        clearError();
+    }
+
+    function checkIfInputIsANumber(e, i) {
+        const { value } = e.target;
+        if (value === undefined || isNaN(value)) {
+            inputState[i] = false;
+        } else if (value !== '') {
+            inputState[i] = null;
+        } else {
+            inputState[i] = true;
+        }
+        printInputError();
+    }
+
+
+    // validate input when onblur
+    document.getElementById('num1').onblur = (e) => checkIfInputIsANumber(e, 0);
+    document.getElementById('num2').onblur = (e) => checkIfInputIsANumber(e, 1);
 }
-
-document.getElementById('submit').onclick = (e) => {
-    e.preventDefault();
-    const num1 = getInput('num1', 'So hang thu nhat khong duoc de trong', 'So hang thu nhat khong phai la so');
-    if (num1 === null) {
-        return;
-    }
-
-    const num2 = getInput('num2', 'So hang thu hai khong duoc de trong', 'So hang thu hai khong phai la so');
-    if (num2 === null) {
-        return;
-    }
-
-    const operator = getOperator();
-
-    const result = calculate(num1, num2, operator);
-
-    printResult(result);
-};
