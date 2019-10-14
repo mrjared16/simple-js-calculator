@@ -1,17 +1,34 @@
 .row{
     margin: 20px 0;
 }
-[class*="col"]{
-    /* background-color: rgb(219, 210, 85); */
-    margin-right: 20px;
+
+html, body{
+    width: 100%;
+    height: 100%;
+}
+.main{
+    margin-top: 40px;
 }
 
-.message{
-    color: rgb(175, 0, 0);
+#msg{
+    display: none;
 }
-* {
-    color: rgb(77, 76, 76);
+.input-label{
+    font-weight: 200;
+    color: #c90000;
 }
+
+.title{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: #ff6d6dd1;
+    background-color: #ffcece;
+}
+
+.title h1{
+    font-size: 60px;
+}
+
 .radio-btn {
     position: relative;
     display: block;
@@ -24,13 +41,15 @@
 .radio-btn label{
     width: 100%;
     height: 100%;   
-    display: block;
     background-color: rgb(247, 204, 204);
     border-radius: 5px;
     border: 2px solid rgb(248, 137, 137);
     cursor: pointer;
     padding: 5px 10px 5px 20px;
-    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color: #a8001d;
 }
 
 .radio-btn label:before, .radio-btn label:after{
