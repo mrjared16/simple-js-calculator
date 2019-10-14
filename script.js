@@ -2,20 +2,28 @@ function printError(msg) {
     document.getElementById('msg').innerText = msg;
 }
 
-function calculate() {
-    const num1 = parseFloat(document.getElementById('num1').value);
-    if (Number.isNaN(num1)) {
-        printError('Xin moi nhap so thu nhat');
-        return;
-    }
+function printResult(value) {
+    document.getElementById('result').value = value;
+}
 
-    const num2 = parseFloat(document.getElementById('num2').value);
-    if (Number.isNaN(num2)) {
-        printError('Xin moi nhap so thu hai');
-        return;
+function getInput(id, nullMsg, nanMsg) {
+    const { value } = document.getElementById(id);
+    if (!value) {
+        printError(nullMsg);
+        return null;
     }
+    if (Number.isNaN(value)) {
+        printError(nanMsg);
+        return null;
+    }
+    return parseFloat(value);
+}
 
-    const operator = document.querySelector('input[name="operator"]:checked').value;
+function getOperator() {
+    return document.querySelector('input[name="operator"]:checked').value;
+}
+
+function calculate(num1, num2, operator) {
     let result;
     switch (operator) {
         case 'plus':
@@ -36,13 +44,28 @@ function calculate() {
             }
             break;
         default:
-            printError('Something wrong happen');
-            return;
+            printError('Phep tinh khong hop le');
+            break;
     }
-    document.getElementById('result').value = result;
+
+    return result;
 }
 
 document.getElementById('submit').onclick = (e) => {
     e.preventDefault();
-    calculate();
+    const num1 = getInput('num1', 'So hang thu nhat khong duoc de trong', 'So hang thu nhat khong phai la so');
+    if (num1 === null) {
+        return;
+    }
+
+    const num2 = getInput('num2', 'So hang thu hai khong duoc de trong', 'So hang thu hai khong phai la so');
+    if (num2 === null) {
+        return;
+    }
+
+    const operator = getOperator();
+
+    const result = calculate(num1, num2, operator);
+
+    printResult(result);
 };
