@@ -10,64 +10,67 @@
 </head>
 
 <body>
+    <header class="title d-flex justify-content-center">
+        <h1>Bé tập tính</h1>
+    </header>
     <div class="container">
-        <header>
-            <h2 class="title">Be tap tinh</h2>
-        </header>
-        <main class="main">
-            <form id="form">
+        <main class="main d-flex justify-content-center">
+            <form id="form" class="col-10" autocomplete="off">
                 <div class="row">
-                    <div class="col-2">
-                        <label for="num1">So thu nhat</label>
+                    <div class="col-2 input-label">
+                        <label for="num1">Số thứ nhất</label>
                     </div>
                     <div class="col-4">
-                        <input type="number" class="form-control" id="num1" step="0.1">
+                        <input type="text" class="form-control" id="num1" step="0.1">
                     </div>
-                    <div class="col-2 radio-btn">
+                    <div class="col-3 radio-btn">
                         <input type="radio" name="operator" id="pls" value="plus" checked>
-                        <label for="pls">Cong</label>
+                        <label for="pls">Cộng</label>
                     </div>
-                    <div class="col-2 radio-btn">
+                    <div class="col-3 radio-btn">
                         <input type="radio" name="operator" id="sub" value="subtract">
-                        <label for="sub">Tru</label>
+                        <label for="sub">Trừ</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-2">
-                        <label for="num2">So thu hai</label>
+                    <div class="col-2 input-label">
+                        <label for="num2">Số thứ hai</label>
                     </div>
                     <div class="col-4">
-                        <input type="number" class="form-control" id="num2" step="0.1">
+                        <input type="text" class="form-control" id="num2" step="0.1">
                     </div>
-                    <div class="col-2 radio-btn">
+                    <div class="col-3 radio-btn">
                         <input type="radio" name="operator" id="mul" value="multiply">
-                        <label for="mul">Nhan</label>
+                        <label for="mul">Nhân</label>
                     </div>
-                    <div class="col-2 radio-btn">
+                    <div class="col-3 radio-btn">
                         <input type="radio" name="operator" id="div" value="divide">
                         <label for="div">Chia</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-2">
-                        <label for="result">Ket qua</label>
+                    <div class="col-2 input-label">
+                        <label for="result">Kết quả</label>
                     </div>
                     <div class="col-4">
                         <input type="number" class="form-control" name="" id="result" readonly>
                     </div>
-                    <div class="col-2">
-                        <button type="submit" class="btn btn-outline-danger" id="submit">Submit</button>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-outline-danger" id="submit">Tính</button>
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-2">Thong bao</label>
-                    <p id="msg" class="message col"></p>
+                    <div class="col-2 input-label">
+                        <label>Thông báo</label>
+                    </div>
+                    <div class="col-10">
+                        <div id="msg" class="alert alert-danger" role="alert"></div>
+                    </div>
                 </div>
             </form>
         </main>
     </div>
     <script src="./script.js"></script>
-
 </body>
 
 </html>
